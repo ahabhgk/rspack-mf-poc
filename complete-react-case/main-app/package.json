@@ -1,0 +1,14 @@
+{
+  "name": "complete-react-case_main-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "webpack": "webpack --watch",
+    "serve": "serve dist -p 3002",
+    "start": "rspack s -c webpack.config.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

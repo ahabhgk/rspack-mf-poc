@@ -1,0 +1,15 @@
+{
+  "name": "nested",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "start": "pnpm --filter nested_app* --parallel start",
+    "build": "pnpm --filter nested_app* build",
+    "serve": "pnpm --filter nested_app* --parallel serve",
+    "clean": "pnpm --filter nested_app* --parallel clean",
+    "e2e:ci": "yarn start & npx wait-on http-get://localhost:3001/ && npx cypress run --config-file ../cypress-e2e/config/cypress.config.ts --config '{\"supportFile\": \"../cypress-e2e/support/e2e.ts\"}' --spec \"./e2e/runAll.cy.ts\" --browser=chrome"
+  },
+  "devDependencies": {
+    "wait-on": "7.2.0"
+  }
+}

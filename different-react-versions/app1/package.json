@@ -1,0 +1,14 @@
+{
+  "name": "different-react-versions_app1",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "rspack s -c webpack.config.js",
+    "build": "webpack --mode production",
+    "serve": "serve dist -p 3001",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "react": "16.14.0",
+    "react-dom": "16.14.0"
+  }
+}

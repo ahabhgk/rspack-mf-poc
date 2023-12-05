@@ -1,0 +1,12 @@
+node_modules
+.vmok
+dist
+.DS_Store
+
+**/cypress/videos/**
+**/cypress/downloads/**
+**/cypress/screenshots/**
+**/cypress/results/**
+**/cypress/report/**
+
+**/cypress-e2e/results/**
