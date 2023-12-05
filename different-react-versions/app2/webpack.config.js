@@ -1,5 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const PocPlugin = require("../../1.5/plugin");
+const PocPlugin = require("rspack-mf-poc-plugin");
 const path = require('path');
 
 const mfOptions = {

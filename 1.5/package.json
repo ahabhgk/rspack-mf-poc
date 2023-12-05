@@ -1,5 +1,7 @@
 {
   "name": "rspack-mf-poc-plugin",
+  "version": "0.0.3",
+  "main": "./plugin.js",
   "scripts": {
   },
   "dependencies": {

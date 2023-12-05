@@ -10,8 +10,8 @@ function extractUrlAndGlobal(urlAndGlobal) {
 	return [urlAndGlobal.substring(index + 1), urlAndGlobal.substring(0, index)];
 };
 
-module.exports = async function(compiler, mfOptions, plugins) {
-  const template = await fs.promises.readFile(path.resolve(__dirname, "./template.js"), 'utf-8');
+module.exports = function(compiler, mfOptions, plugins) {
+  const template = fs.readFileSync(path.resolve(__dirname, "./template.js"), 'utf-8');
   const remotes = [];
   for (let [key, remote] of Object.entries(mfOptions.remotes ?? {})) {
     let url, global;
@@ -37,11 +37,11 @@ module.exports = async function(compiler, mfOptions, plugins) {
   const hash = crypto.createHash('md5').update(realEntry).digest('hex');
   const dir = path.resolve(compiler.context, '.vmok');
   if (!fs.existsSync(dir)) {
-    await fs.promises.mkdir(dir);
+    fs.mkdirSync(dir);
   }
   const outputPath = path.resolve(dir, `entry-${hash}.js`);
   if (!fs.existsSync(outputPath)) {
-    await fs.promises.writeFile(outputPath, realEntry);
+    fs.writeFileSync(outputPath, realEntry);
   }
   return outputPath
 }
