@@ -45,8 +45,11 @@ module.exports = {
     new PocPlugin({
       // List of remotes with URLs
       remotes: {
-        "mfe-b": "mfeBBB@http://localhost:8081/mfeBBB.js",
-        "mfe-c": "mfeCCC@http://localhost:8082/mfeCCC.js"
+        'mfe-b': {
+          external: 'defaultRemote@http://localhost:8081/mfeBBB.js',
+          name: 'mfeBBB'
+        },
+        'mfe-c': 'mfeCCC@http://localhost:8082/mfeCCC.js',
       },
     
       // list of shared modules with optional options

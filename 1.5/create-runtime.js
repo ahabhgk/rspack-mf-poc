@@ -33,7 +33,8 @@ module.exports = function (compiler, mfOptions, plugins) {
     const [externalType, external] = getExternal(typeof remote === 'string' ? remote : remote.external, mfOptions.remoteType);
     if (externalType === 'script') {
       const [url, global] = extractUrlAndGlobal(external);
-      remotes.push({ alias: key, name: global, entry: url, externalType })
+      const name = typeof remote !== 'string' && remote.name || global;
+      remotes.push({ alias: key, name, entry: url, externalType })
     } else {
       remotes.push({ alias: key, name: undefined, entry: undefined, externalType })
     }
