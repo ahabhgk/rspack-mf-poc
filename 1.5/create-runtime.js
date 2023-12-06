@@ -5,23 +5,38 @@ const crypto = require("crypto");
 function extractUrlAndGlobal(urlAndGlobal) {
   const index = urlAndGlobal.indexOf("@");
   if (index <= 0 || index === urlAndGlobal.length - 1) {
-    throw new Error(`Invalid request "${urlAndGlobal}"`);
+    return null;
   }
   return [urlAndGlobal.substring(index + 1), urlAndGlobal.substring(0, index)];
 };
+
+function getExternalTypeFromExternal(external) {
+  if (/^[a-z0-9-]+ /.test(external)) {
+    const idx = external.indexOf(' ');
+    return [external.slice(0, idx), external.slice(idx + 1)]
+  }
+  return null
+}
+
+function getExternal(external, defaultExternalType = 'script') {
+  const result = getExternalTypeFromExternal(external);
+  if (result === null) {
+    return [defaultExternalType, external]
+  }
+  return result
+}
 
 module.exports = function (compiler, mfOptions, plugins) {
   const template = fs.readFileSync(path.resolve(__dirname, "./template.js"), 'utf-8');
   const remotes = [];
   for (let [key, remote] of Object.entries(mfOptions.remotes ?? {})) {
-    let url, global;
-    try {
-      // only add externalType: "script" into initOptions.remotes
-      [url, global] = extractUrlAndGlobal(remote);
-    } catch (e) {
-      continue;
+    const [externalType, external] = getExternal(typeof remote === 'string' ? remote : remote.external, mfOptions.remoteType);
+    if (externalType === 'script') {
+      const [url, global] = extractUrlAndGlobal(external);
+      remotes.push({ alias: key, name: global, entry: url, externalType })
+    } else {
+      remotes.push({ alias: key, name: undefined, entry: undefined, externalType })
     }
-    remotes.push({ alias: key, name: global, entry: url })
   }
   const pluginImports = [];
   const pluginVars = []

@@ -31,7 +31,7 @@ const idToRemoteMap = {};
 for (let [id, external] of Object.entries(idToExternalAndNameMapping)) {
   for (let remote of __webpack_require__.federation.initOptions.remotes) {
     if (id.slice('webpack/container/remote/'.length).startsWith(remote.alias)) {
-      idToRemoteMap[id] = [{ externalType: "script", request: remote.entry, remoteName: remote.name }]
+      idToRemoteMap[id] = [{ externalType: remote.externalType, request: remote.entry, remoteName: remote.name }]
     }
   }
 }
