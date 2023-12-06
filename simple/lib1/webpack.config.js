@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const path = require("path")
-const webpack = require("webpack")
+const PocPlugin = require("../../1.5/plugin");
+// const webpack = require("webpack")
 
 module.exports = {
   mode: "development",
@@ -29,7 +30,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin(),
-    new webpack.container.ModuleFederationPlugin({
+    new PocPlugin({
       // A unique name
       name: "mfeBBB",
       // List of exposed modules

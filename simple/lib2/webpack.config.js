@@ -1,5 +1,6 @@
 const path = require("path")
 const webpack = require("webpack")
+const PocPlugin = require("../../1.5/plugin");
 
 module.exports = {
   mode: "development",
@@ -25,7 +26,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.container.ModuleFederationPlugin({
+    new PocPlugin({
       name: "mfeCCC",
 
       exposes: {

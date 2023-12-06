@@ -1,7 +1,7 @@
 import federation from "@module-federation/webpack-bundler-runtime";
 $INITOPTIONS_PLUGIN_IMPORTS$
 
-const scopeToInitDataMapping = __webpack_require__.MF.initializeSharingData.scopeToSharingDataMapping;
+const scopeToInitDataMapping = __webpack_require__.MF.initializeSharingData?.scopeToSharingDataMapping ?? {};
 const shared = {};
 for (let [scope, stages] of Object.entries(scopeToInitDataMapping)) {
   for (let stage of stages) {
@@ -26,7 +26,7 @@ __webpack_require__.federation.initOptions.remotes = $INITOPTIONS_REMOTES$;
 __webpack_require__.federation.initOptions.shared = shared;
 __webpack_require__.federation.initOptions.plugins = $INITOPTIONS_PLUGINS$;
 
-const idToExternalAndNameMapping = __webpack_require__.MF.remotesLoadingData.moduleIdToRemoteDataMapping;
+const idToExternalAndNameMapping = __webpack_require__.MF.remotesLoadingData?.moduleIdToRemoteDataMapping ?? {};
 const idToRemoteMap = {};
 for (let [id, external] of Object.entries(idToExternalAndNameMapping)) {
   for (let remote of __webpack_require__.federation.initOptions.remotes) {
@@ -36,7 +36,7 @@ for (let [id, external] of Object.entries(idToExternalAndNameMapping)) {
   }
 }
 
-const moduleToConsumeDataMapping = __webpack_require__.MF.consumesLoadingData.moduleIdToConsumeDataMapping;
+const moduleToConsumeDataMapping = __webpack_require__.MF.consumesLoadingData?.moduleIdToConsumeDataMapping ?? {};
 const moduleToHandlerMapping = {};
 for (let [moduleId, data] of Object.entries(moduleToConsumeDataMapping)) {
   moduleToHandlerMapping[moduleId] = {
@@ -58,6 +58,8 @@ for (let [moduleId, data] of Object.entries(moduleToConsumeDataMapping)) {
 const installedModules = {}
 const initPromises = [];
 const initTokens = [];
+const remotesLoadingChunkMapping = __webpack_require__.MF.remotesLoadingData?.chunkMapping ?? {};
+const consumesLoadingChunkMapping = __webpack_require__.MF.consumesLoadingData?.chunkMapping ?? {};
 
 __webpack_require__.federation.runtime = federation.runtime;
 __webpack_require__.federation.instance = federation.instance;
@@ -66,15 +68,15 @@ __webpack_require__.federation.hasProxyShareScopeMap = federation.hasProxyShareS
 __webpack_require__.federation.bundlerRuntimeOptions = {
   remotes: {
     idToRemoteMap,
-    chunkMapping: __webpack_require__.MF.remotesLoadingData.chunkMapping,
+    chunkMapping: remotesLoadingChunkMapping,
     idToExternalAndNameMapping,
     webpackRequire: __webpack_require__,
   }
 }
 
 __webpack_require__.federation.bundlerRuntime = {
-  remotes: (chunkId, promises) => federation.bundlerRuntime.remotes({ chunkId, promises, chunkMapping: __webpack_require__.MF.remotesLoadingData.chunkMapping, idToExternalAndNameMapping, idToRemoteMap, webpackRequire: __webpack_require__ }),
-  consumes: (chunkId, promises) => federation.bundlerRuntime.consumes({ chunkId, promises, chunkMapping: __webpack_require__.MF.consumesLoadingData.chunkMapping, moduleToHandlerMapping, installedModules, webpackRequire: __webpack_require__ }),
+  remotes: (chunkId, promises) => federation.bundlerRuntime.remotes({ chunkId, promises, chunkMapping: remotesLoadingChunkMapping, idToExternalAndNameMapping, idToRemoteMap, webpackRequire: __webpack_require__ }),
+  consumes: (chunkId, promises) => federation.bundlerRuntime.consumes({ chunkId, promises, chunkMapping: consumesLoadingChunkMapping, moduleToHandlerMapping, installedModules, webpackRequire: __webpack_require__ }),
   I: (name, initScope) => federation.bundlerRuntime.I({ shareScopeName: name, initScope, initPromises, initTokens, webpackRequire: __webpack_require__ }),
   S: federation.bundlerRuntime.S,
   installInitialConsumes: federation.bundlerRuntime.installInitialConsumes

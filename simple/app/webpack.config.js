@@ -62,6 +62,8 @@ module.exports = {
           // eager: true,
         }
       },
+
+      runtimePlugins: ['./runtimePlugin.js']
     }),
   ],
   devServer: {

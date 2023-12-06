@@ -3,14 +3,14 @@ const path = require("path")
 const crypto = require("crypto");
 
 function extractUrlAndGlobal(urlAndGlobal) {
-	const index = urlAndGlobal.indexOf("@");
-	if (index <= 0 || index === urlAndGlobal.length - 1) {
-		throw new Error(`Invalid request "${urlAndGlobal}"`);
-	}
-	return [urlAndGlobal.substring(index + 1), urlAndGlobal.substring(0, index)];
+  const index = urlAndGlobal.indexOf("@");
+  if (index <= 0 || index === urlAndGlobal.length - 1) {
+    throw new Error(`Invalid request "${urlAndGlobal}"`);
+  }
+  return [urlAndGlobal.substring(index + 1), urlAndGlobal.substring(0, index)];
 };
 
-module.exports = function(compiler, mfOptions, plugins) {
+module.exports = function (compiler, mfOptions, plugins) {
   const template = fs.readFileSync(path.resolve(__dirname, "./template.js"), 'utf-8');
   const remotes = [];
   for (let [key, remote] of Object.entries(mfOptions.remotes ?? {})) {
@@ -27,7 +27,7 @@ module.exports = function(compiler, mfOptions, plugins) {
   const pluginVars = []
   for (let i = 0; i < plugins.length; i++) {
     const pluginVar = `__$P$${i}`;
-    pluginImports.push(`const ${pluginVar} = require(${JSON.stringify(plugins[i])});`)
+    pluginImports.push(`import ${pluginVar} from ${JSON.stringify(path.resolve(compiler.context, plugins[i]))};`)
     pluginVars.push(`${pluginVar}()`);
   }
   let realEntry = template
