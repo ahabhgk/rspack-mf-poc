@@ -31,12 +31,13 @@ module.exports = function (compiler, mfOptions, plugins) {
   const remotes = [];
   for (let [key, remote] of Object.entries(mfOptions.remotes ?? {})) {
     const [externalType, external] = getExternal(typeof remote === 'string' ? remote : remote.external, mfOptions.remoteType);
+    const shareScope = typeof remote !== 'string' && remote.shareScope || mfOptions.shareScope;
     if (externalType === 'script') {
       const [url, global] = extractUrlAndGlobal(external);
       const name = typeof remote !== 'string' && remote.name || global;
-      remotes.push({ alias: key, name, entry: url, externalType })
+      remotes.push({ alias: key, name, entry: url, externalType, shareScope })
     } else {
-      remotes.push({ alias: key, name: undefined, entry: undefined, externalType })
+      remotes.push({ alias: key, name: undefined, entry: undefined, externalType, shareScope })
     }
   }
   const pluginImports = [];

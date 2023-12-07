@@ -1,21 +1,19 @@
 {
   "name": "rspack-mf-poc-plugin",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "./plugin.js",
-  "scripts": {
-  },
-  "dependencies": {
-  },
+  "scripts": {},
+  "dependencies": {},
   "devDependencies": {
-    "@rspack/core": "^0.4.2",
     "@module-federation/runtime": "0.0.0-canary-1701764602388",
     "@module-federation/sdk": "0.0.0-canary-1701764602388",
-    "@module-federation/webpack-bundler-runtime": "0.0.0-canary-1701764602388"
+    "@module-federation/webpack-bundler-runtime": "0.0.0-canary-1701764602388",
+    "@rspack/core": "^0.4.2"
   },
   "peerDependencies": {
-    "@rspack/core": "^0.4.2",
     "@module-federation/runtime": "0.0.0-canary-1701764602388",
     "@module-federation/sdk": "0.0.0-canary-1701764602388",
-    "@module-federation/webpack-bundler-runtime": "0.0.0-canary-1701764602388"
+    "@module-federation/webpack-bundler-runtime": "0.0.0-canary-1701764602388",
+    "@rspack/core": "^0.4.2"
   }
 }
