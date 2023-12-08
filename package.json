@@ -1,11 +1,17 @@
 {
   "scripts": {
-    "dev:runtime-demo": "node cmd.js runtime-demo host,remote,remote1,remote2",
-    "dev:simple": "node cmd.js simple app,lib1,lib2",
-    "dev:different-react-versions": "node cmd.js different-react-versions app1,app2",
-    "dev:different-react-versions-isolated": "node cmd.js different-react-versions-isolated app1,app2",
-    "dev:complete-react-case": "node cmd.js complete-react-case component-app,lib-app,main-app",
-    "dev:nested": "node cmd.js nested app1,app2,app3"
+    "dev:runtime-demo": "RSPACK=true node cmd.js runtime-demo host,remote,remote1,remote2",
+    "dev:webpack:runtime-demo": "node cmd.js runtime-demo host,remote,remote1,remote2",
+    "dev:simple": "RSPACK=true node cmd.js simple app,lib1,lib2",
+    "dev:webpack:simple": "node cmd.js simple app,lib1,lib2",
+    "dev:different-react-versions": "RSPACK=true node cmd.js different-react-versions app1,app2",
+    "dev:webpack:different-react-versions": "node cmd.js different-react-versions app1,app2",
+    "dev:different-react-versions-isolated": "RSPACK=true node cmd.js different-react-versions-isolated app1,app2",
+    "dev:webpack:different-react-versions-isolated": "node cmd.js different-react-versions-isolated app1,app2",
+    "dev:complete-react-case": "RSPACK=true node cmd.js complete-react-case component-app,lib-app,main-app",
+    "dev:webpack:complete-react-case": "node cmd.js complete-react-case component-app,lib-app,main-app",
+    "dev:nested": "RSPACK=true node cmd.js nested app1,app2,app3",
+    "dev:webpack:nested": "node cmd.js nested app1,app2,app3"
   },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.18.6",

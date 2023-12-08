@@ -8,7 +8,7 @@ module.exports = {
   context: __dirname,
   devtool: false,
   output: {
-    path: "./dist",
+    path: path.resolve(__dirname, "./dist"),
     uniqueName: "lib2"
   },
   module: {

@@ -1,7 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const path = require("path")
 const PocPlugin = require("../../1.5/plugin");
-// const webpack = require("webpack")
 
 module.exports = {
   mode: "development",
@@ -11,7 +10,7 @@ module.exports = {
   context: __dirname,
   devtool: false,
   output: {
-    path: "./dist",
+    path: path.resolve(__dirname, "./dist"),
     uniqueName: "lib1"
   },
   module: {

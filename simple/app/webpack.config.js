@@ -8,7 +8,7 @@ module.exports = {
   devtool: false,
   context: __dirname,
   output: {
-    path: "./dist",
+    path: path.resolve(__dirname, "./dist"),
     uniqueName: "app"
   },
   module: {
@@ -46,8 +46,7 @@ module.exports = {
       // List of remotes with URLs
       remotes: {
         'mfe-b': {
-          external: 'defaultRemote@http://localhost:8081/mfeBBB.js',
-          name: 'mfeBBB'
+          external: 'mfeBBB@http://localhost:8081/mfeBBB.js',
         },
         'mfe-c': 'mfeCCC@http://localhost:8082/mfeCCC.js',
       },
