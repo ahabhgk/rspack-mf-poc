@@ -22,6 +22,7 @@ for (let [scope, stages] of Object.entries(scopeToInitDataMapping)) {
 
 __webpack_require__.federation = {};
 __webpack_require__.federation.initOptions = {};
+__webpack_require__.federation.initOptions.name = $INITOPTIONS_NAME$;
 __webpack_require__.federation.initOptions.remotes = $INITOPTIONS_REMOTES$;
 __webpack_require__.federation.initOptions.shared = shared;
 __webpack_require__.federation.initOptions.plugins = $INITOPTIONS_PLUGINS$;
