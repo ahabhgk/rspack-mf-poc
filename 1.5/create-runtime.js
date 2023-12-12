@@ -48,6 +48,7 @@ module.exports = function (compiler, mfOptions, plugins) {
     pluginVars.push(`${pluginVar}()`);
   }
   let realEntry = template
+    .replace('$INITOPTIONS_NAME$', JSON.stringify(mfOptions.name))
     .replace('$INITOPTIONS_REMOTES$', JSON.stringify(remotes))
     .replace('$INITOPTIONS_PLUGIN_IMPORTS$', pluginImports.join("\n"))
     .replace('$INITOPTIONS_PLUGINS$', `[${pluginVars.join(', ')}]`);
