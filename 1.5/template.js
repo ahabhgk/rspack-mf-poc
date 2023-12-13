@@ -62,6 +62,7 @@ const initPromises = [];
 const initTokens = [];
 const remotesLoadingChunkMapping = __webpack_require__.remotesLoadingData?.chunkMapping ?? {};
 const consumesLoadingChunkMapping = __webpack_require__.consumesLoadingData?.chunkMapping ?? {};
+const containerShareScope = __webpack_require__.initializeExposesData?.containerShareScope;
 
 __webpack_require__.federation.runtime = federation.runtime;
 __webpack_require__.federation.instance = federation.instance;
@@ -81,12 +82,28 @@ __webpack_require__.federation.bundlerRuntime = {
   consumes: (chunkId, promises) => federation.bundlerRuntime.consumes({ chunkId, promises, chunkMapping: consumesLoadingChunkMapping, moduleToHandlerMapping, installedModules, webpackRequire: __webpack_require__ }),
   I: (name, initScope) => federation.bundlerRuntime.I({ shareScopeName: name, initScope, initPromises, initTokens, webpackRequire: __webpack_require__ }),
   S: federation.bundlerRuntime.S,
-  installInitialConsumes: federation.bundlerRuntime.installInitialConsumes
+  installInitialConsumes: federation.bundlerRuntime.installInitialConsumes,
+  initContainerEntry: (shareScope, initScope) => federation.bundlerRuntime.initContainerEntry({ shareScope, initScope, shareScopeKey: containerShareScope, webpackRequire: __webpack_require__ }),
 }
 
-if (__webpack_require__.f.remotes) __webpack_require__.f.remotes = __webpack_require__.federation.bundlerRuntime.remotes;
-if (__webpack_require__.f.consumes) __webpack_require__.f.consumes = __webpack_require__.federation.bundlerRuntime.consumes;
-if (__webpack_require__.I) __webpack_require__.I = __webpack_require__.federation.bundlerRuntime.I;
+__webpack_require__.f.remotes = __webpack_require__.federation.bundlerRuntime.remotes;
+__webpack_require__.f.consumes = __webpack_require__.federation.bundlerRuntime.consumes;
+__webpack_require__.I = __webpack_require__.federation.bundlerRuntime.I;
+__webpack_require__.initContainer = __webpack_require__.federation.bundlerRuntime.initContainerEntry;
+__webpack_require__.getContainer = (module, getScope) => {
+  var moduleMap = __webpack_require__.initializeExposesData.moduleMap;
+  __webpack_require__.R = getScope;
+  getScope = (
+    Object.prototype.hasOwnProperty.call(moduleMap, module)
+      ? moduleMap[module]()
+      : Promise.resolve().then(() => {{
+        throw new Error('Module "' + module + '" does not exist in container.');
+      }})
+  );
+  __webpack_require__.R = undefined;
+  return getScope;
+};
+
 
 __webpack_require__.federation.instance = __webpack_require__.federation.runtime.init(__webpack_require__.federation.initOptions);
 

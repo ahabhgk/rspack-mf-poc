@@ -44,7 +44,7 @@ module.exports = function (compiler, mfOptions, plugins) {
   const pluginVars = []
   for (let i = 0; i < plugins.length; i++) {
     const pluginVar = `__$P$${i}`;
-    pluginImports.push(`import ${pluginVar} from ${JSON.stringify(path.resolve(compiler.context, plugins[i]))};`)
+    pluginImports.push(`import ${pluginVar} from ${JSON.stringify(plugins[i])};`)
     pluginVars.push(`${pluginVar}()`);
   }
   let realEntry = template
@@ -52,14 +52,15 @@ module.exports = function (compiler, mfOptions, plugins) {
     .replace('$INITOPTIONS_REMOTES$', JSON.stringify(remotes))
     .replace('$INITOPTIONS_PLUGIN_IMPORTS$', pluginImports.join("\n"))
     .replace('$INITOPTIONS_PLUGINS$', `[${pluginVars.join(', ')}]`);
-  const hash = crypto.createHash('md5').update(realEntry).digest('hex');
-  const dir = path.resolve(compiler.context, '.vmok');
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir);
-  }
-  const outputPath = path.resolve(dir, `entry-${hash}.js`);
-  if (!fs.existsSync(outputPath)) {
-    fs.writeFileSync(outputPath, realEntry);
-  }
-  return outputPath
+  return `data:text/javascript,${realEntry}`;
+  // const hash = crypto.createHash('md5').update(realEntry).digest('hex');
+  // const dir = path.resolve(compiler.context, '.vmok');
+  // if (!fs.existsSync(dir)) {
+  //   fs.mkdirSync(dir);
+  // }
+  // const outputPath = path.resolve(dir, `entry-${hash}.js`);
+  // if (!fs.existsSync(outputPath)) {
+  //   fs.writeFileSync(outputPath, realEntry);
+  // }
+  // return outputPath
 }

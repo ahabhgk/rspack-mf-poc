@@ -20,6 +20,7 @@ module.exports = class Plugin {
     delete vmokOptions.runtimePlugins;
     new compiler.webpack.container.ModuleFederationPlugin({
       ...vmokOptions,
+      enhanced: true,
     }).apply(compiler);
   }
 }

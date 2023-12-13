@@ -11,6 +11,7 @@ module.exports = {
     path: path.resolve(__dirname, "./dist"),
     uniqueName: "app"
   },
+  target: ["web", "es5"],
   module: {
     rules: [
       {

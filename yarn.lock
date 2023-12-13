@@ -1966,24 +1966,25 @@
     "@lezer/lr" "^1.0.0"
     json5 "^2.2.1"
 
-"@module-federation/runtime@0.0.0-canary-1701851696898":
-  version "0.0.0-canary-1701851696898"
-  resolved "https://registry.yarnpkg.com/@module-federation/runtime/-/runtime-0.0.0-canary-1701851696898.tgz#c628eab1a7ad642290c13faea92ccc2f1c9ec3a9"
-  integrity sha512-p9fC02FidldgkTfys2RTlMWEmjZwBDDkWTwTUYdPYsxgPvE0Mokj9Ne9f2NQiuWrnbsbjSm1LvppqY/4PD3imw==
+"@module-federation/runtime@0.0.0-canary-1702367824043":
+  version "0.0.0-canary-1702367824043"
+  resolved "https://registry.yarnpkg.com/@module-federation/runtime/-/runtime-0.0.0-canary-1702367824043.tgz#a92a8dc56a43fd9280e36ad522655ec8d6f0eb73"
+  integrity sha512-QZh2gsU0BpM0J6vR1RDjXgezOl5gyYWtAfLjrxZ/dwoImv/PB8P6Deb53oqnWxuTp6QopQ6sn88AlstaE3D/5w==
   dependencies:
-    "@module-federation/sdk" "0.0.0-canary-1701851696898"
+    "@module-federation/sdk" "0.0.0-canary-1702367824043"
+    semver "7.5.4"
 
-"@module-federation/sdk@0.0.0-canary-1701851696898":
-  version "0.0.0-canary-1701851696898"
-  resolved "https://registry.yarnpkg.com/@module-federation/sdk/-/sdk-0.0.0-canary-1701851696898.tgz#12882f097ede4dafc520a1f23d17f1e34377e8e3"
-  integrity sha512-5qQpeVGyrhnXExqYxrUE9bf2d7eKl541U+dbO7ZjC3o8hOjxp93pdskeUx0Ig7xYktLtPBkOw/tNsWuF0UR9LA==
+"@module-federation/sdk@0.0.0-canary-1702367824043":
+  version "0.0.0-canary-1702367824043"
+  resolved "https://registry.yarnpkg.com/@module-federation/sdk/-/sdk-0.0.0-canary-1702367824043.tgz#4966324d1925f99078cf3813b29a3eb61b2e18c2"
+  integrity sha512-fW8Edj9JsIaqp5j/QryQsKtOSbN9L1fgUrUhXRtruJiN6lct+t0F6usf1mP7cxjS26ZQKp6ZlkgmMTP26b0RkA==
 
-"@module-federation/webpack-bundler-runtime@0.0.0-canary-1701851696898":
-  version "0.0.0-canary-1701851696898"
-  resolved "https://registry.yarnpkg.com/@module-federation/webpack-bundler-runtime/-/webpack-bundler-runtime-0.0.0-canary-1701851696898.tgz#23ab77e9268f7c0d898c6d3de8bcf8321f2042c5"
-  integrity sha512-lCNxzWGsXwNu9MhDVTB6EAbj68hS1DJ+rNO6E05FvpptK4nYU/+3VdOQ5LpBz9/GziFqnYH42DLy3KX3VVXshA==
+"@module-federation/webpack-bundler-runtime@0.0.0-canary-1702367824043":
+  version "0.0.0-canary-1702367824043"
+  resolved "https://registry.yarnpkg.com/@module-federation/webpack-bundler-runtime/-/webpack-bundler-runtime-0.0.0-canary-1702367824043.tgz#ba3180e57421d4aa89624f2481f38e590b5c9d32"
+  integrity sha512-D6fRlBFu7ymUBT3hs1RlFHBNsnV8x3C+5kM+TwwZmlsGkaKUtvDiwpIanEaREeuMeiSbuCgYMVDeHFb5jy72uA==
   dependencies:
-    "@module-federation/runtime" "0.0.0-canary-1701851696898"
+    "@module-federation/runtime" "0.0.0-canary-1702367824043"
 
 "@msgpackr-extract/msgpackr-extract-darwin-arm64@3.0.2":
   version "3.0.2"

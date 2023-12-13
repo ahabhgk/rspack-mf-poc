@@ -16,9 +16,9 @@
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.18.6",
     "@babel/plugin-transform-modules-commonjs": "^7.22.15",
-    "@module-federation/runtime": "0.0.0-canary-1701851696898",
-    "@module-federation/sdk": "0.0.0-canary-1701851696898",
-    "@module-federation/webpack-bundler-runtime": "0.0.0-canary-1701851696898",
+    "@module-federation/runtime": "0.0.0-canary-1702367824043",
+    "@module-federation/sdk": "0.0.0-canary-1702367824043",
+    "@module-federation/webpack-bundler-runtime": "0.0.0-canary-1702367824043",
     "@shelex/cypress-allure-plugin": "2.40.0",
     "@types/node": "20.9.0",
     "abbrev": "^2.0.0",
