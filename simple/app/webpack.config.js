@@ -1,6 +1,6 @@
 const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
-const PocPlugin = require("../../1.5/plugin");
+const rspack = require("/Users/bytedance/GitHub/rspack/packages/rspack");
 
 module.exports = {
   mode: "development",
@@ -43,7 +43,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin(),
-    new PocPlugin({
+    new rspack.container.ModuleFederationPlugin({
       // List of remotes with URLs
       remotes: {
         'mfe-b': {

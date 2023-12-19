@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const path = require("path")
-const PocPlugin = require("../../1.5/plugin");
+// const PocPlugin = require("../../1.5/plugin");
+const rspack = require("/Users/bytedance/GitHub/rspack/packages/rspack");
 
 module.exports = {
   mode: "development",
@@ -29,7 +30,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin(),
-    new PocPlugin({
+    new rspack.container.ModuleFederationPlugin({
       // A unique name
       name: "mfeBBB",
       // List of exposed modules

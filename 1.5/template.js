@@ -82,7 +82,7 @@ __webpack_require__.federation.bundlerRuntime = {
   consumes: (chunkId, promises) => federation.bundlerRuntime.consumes({ chunkId, promises, chunkMapping: consumesLoadingChunkMapping, moduleToHandlerMapping, installedModules, webpackRequire: __webpack_require__ }),
   I: (name, initScope) => federation.bundlerRuntime.I({ shareScopeName: name, initScope, initPromises, initTokens, webpackRequire: __webpack_require__ }),
   S: federation.bundlerRuntime.S,
-  installInitialConsumes: federation.bundlerRuntime.installInitialConsumes,
+  installInitialConsumes: (initialConsumes) => federation.bundlerRuntime.installInitialConsumes({ webpackRequire: __webpack_require__, installedModules, initialConsumes, moduleToHandlerMapping }),
   initContainerEntry: (shareScope, initScope) => federation.bundlerRuntime.initContainerEntry({ shareScope, initScope, shareScopeKey: containerShareScope, webpackRequire: __webpack_require__ }),
 }
 
@@ -107,6 +107,9 @@ __webpack_require__.getContainer = (module, getScope) => {
 
 __webpack_require__.federation.instance = __webpack_require__.federation.runtime.init(__webpack_require__.federation.initOptions);
 
+if (__webpack_require__.consumesLoadingData?.initialConsumes) {
+  __webpack_require__.federation.bundlerRuntime.installInitialConsumes(__webpack_require__.consumesLoadingData.initialConsumes);
+}
 
 // helpers
 function isRequiredVersion(str) {

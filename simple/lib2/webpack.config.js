@@ -1,6 +1,6 @@
 const path = require("path")
 const webpack = require("webpack")
-const PocPlugin = require("../../1.5/plugin");
+const rspack = require("/Users/bytedance/GitHub/rspack/packages/rspack");
 
 module.exports = {
   mode: "development",
@@ -26,7 +26,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new PocPlugin({
+    new rspack.container.ModuleFederationPlugin({
       name: "mfeCCC",
 
       exposes: {
